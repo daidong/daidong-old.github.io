@@ -4,13 +4,113 @@
  <title>Tom Preston-Werner</title>
  <link href="http://daidong.github.io/atom.xml" rel="self"/>
  <link href="http://daidong.github.io"/>
- <updated>2013-06-23T21:26:33+08:00</updated>
+ <updated>2013-06-24T14:40:27+08:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>Dai Dong</name>
    <email>daidongly@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>200 Papers on High Performance I/O (Part 1. SC)</title>
+   <link href="http://daidong.github.io/2013/06/24/hpc-200-papers-sc.html"/>
+   <updated>2013-06-24T00:00:00+08:00</updated>
+   <id>http://daidong.github.io/blog/2013/06/24/hpc-200-papers-sc</id>
+   <content type="html">&lt;h1&gt;200 Papers on High Performance I/O (Part 1. SC)&lt;/h1&gt;
+
+&lt;p class=&quot;meta&quot;&gt;24 Jun 2013 - Suzhou&lt;/p&gt;
+
+
+&lt;h2&gt;SC 2012: Salt Lake City, UT, USA&lt;/h2&gt;
+
+&lt;p&gt;In &lt;strong&gt;&lt;a href=&quot;http://www.informatik.uni-trier.de/~ley/db/conf/sc/sc2012.html&quot;&gt;SC 2012&lt;/a&gt;&lt;/strong&gt;, there were 105 papers accepted by the main conference, parts of them are relevant with I/O systems. Here, we firstly list all the relative papers, then read/blog these papers.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;SESSION Analysis of I/O and storage&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2389005&quot;&gt;Demonstrating lustre over a 100Gbps wide area network of 3,500km&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://people.ac.upc.edu/toni/Toni_web_site/Toni_Cortes_-_Conferences_files/sc2012_hpc_dedup.pdf&quot;&gt;A study on data deduplication in HPC storage systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://info.ornl.gov/sites/publications/Files/Pub41514.pdf&quot;&gt;Characterizing output bottlenecks in a supercomputer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;SESSION Optimizing I/O for analytics&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6468527&quot;&gt;Byte-precision level of detail processing for variable precision analytics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.janinebennett.org/index_files/sc12.pdf&quot;&gt;Combining in-situ and in-transit processing to enable extreme-scale scientific analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.researchgate.net/publication/233733599_Efficient_Data_Restructuring_and_Aggregation_for_IO_Acceleration_in_PIDX/file/79e4150bd160e716fb.pdf&quot;&gt;Efficient data restructuring and aggregation for I/O acceleration in PIDX&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;SESSION Visualization and analysis of massive data sets&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2389077&quot;&gt;Parallel I/O, analysis, and visualization of a trillion particle simulation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://lazar.cs.jhu.edu/Site/Publications_files/sc2012.pdf&quot;&gt;Data-intensive spatial filtering in large numerical simulation datasets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2389079&quot;&gt;Parallel particle advection and FTLE computation for time-varying flow fields&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;SESSION Big data&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.mcs.anl.gov/~wozniak/papers/AMFS_2012.pdf&quot;&gt;Design and analysis of data management in scalable parallel scripting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ssrc.ucsc.edu/Papers/adams-sc12.pdf&quot;&gt;Usage behavior of a large-scale scientific archive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6468454&quot;&gt;On distributed file tree walk of parallel file systems&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;SESSION Locality in programming models and runtimes&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;SC 2011: Seattle WA, USA&lt;/h2&gt;
+
+&lt;p&gt;In &lt;strong&gt;&lt;a href=&quot;http://www.informatik.uni-trier.de/~ley/db/conf/sc/sc2011.html&quot;&gt;SC 2011&lt;/a&gt;&lt;/strong&gt;, there were 77 papers accepted by the main conference, parts of them are relevant with I/O systems:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;SESSION Coordinating I/O&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Server-side I/O coordination for parallel file systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;QoS support for end users of I/O-intensive applications using shared storage systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Topology-aware data movement and staging for I/O acceleration on Blue Gene/P supercomputing systems&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;SESSION Querying large scale data&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;I/O streaming evaluation of batch queries for data-intensive computational turbulence&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Parallel index and query for large scale data analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;ISABELA-QA: query-driven analytics with ISABELA-compressed extreme-scale scientific data&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;SESSION Storage and memory&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Virtual I/O caching: dynamic storage cache management for concurrent workloads&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;SCMFS: a file system for storage class memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Optimized pre-copy live migration for memory intensive applications&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;SESSION NOTHING&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;SC 2010: New Orleans LA, USA&lt;/h2&gt;
+
+&lt;p&gt;In &lt;strong&gt;&lt;a href=&quot;http://www.informatik.uni-trier.de/~ley/db/conf/sc/sc2010.html&quot;&gt;SC 2010&lt;/a&gt;&lt;/strong&gt;, there were xx papers accepted by the main conference, parts of them are relevant with I/O systems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Understanding the Impact of Emerging Non-Volatile Memories on High-Performance, IO-Intensive Computing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Accelerating I/O Forwarding in IBM Blue Gene/P Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Managing Variability in the IO Performance of Petascale Storage Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;IOrchestrator: Improving the Performance of Multi-node I/O Systems via Inter-Server Coordination&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;Automatic Run-time Parallelization and Transformation of I/O&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Ready To Graduate From Phd.</title>
