@@ -22,6 +22,12 @@ body {
   text-align: center;
 }
 
+img {
+  margin: 0 auto;
+  max-width: 400px;
+  max-height: 350px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
 }

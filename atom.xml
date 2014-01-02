@@ -4,7 +4,7 @@
  <title>Tom Preston-Werner</title>
  <link href="http://daidong.github.io/atom.xml" rel="self"/>
  <link href="http://daidong.github.io"/>
- <updated>2013-06-24T14:40:27+08:00</updated>
+ <updated>2014-01-01T20:24:20-06:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>Dai Dong</name>
@@ -13,9 +13,79 @@
 
  
  <entry>
+   <title>Happy New Year</title>
+   <link href="http://daidong.github.io/2014/01/01/Happy-New-Year.html"/>
+   <updated>2014-01-01T00:00:00-06:00</updated>
+   <id>http://daidong.github.io/blog/2014/01/01/Happy-New-Year</id>
+   <content type="html">&lt;h1&gt;Happy New Year&lt;/h1&gt;
+
+&lt;p class=&quot;meta&quot;&gt;1 Jan 2014 - Lubbock&lt;/p&gt;
+
+
+&lt;p&gt;&lt;img src=&quot;/images/IMG_20131228.jpg&quot; alt=&quot;StateHW114&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Happy new year everyone!&lt;/p&gt;
+
+&lt;p&gt;On this remarkable day, i wrote this blog for new year's resolutions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Continuously write this blog in this year. Fill it with what i found and interested in.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create one site that others need and i want. I have been way behind my schedule to build such a site. It is time to work on it.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Try harder to write paper and proposal. Do not make too many wishes and really work hard on problem.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Read more books.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Learn new lanuages: Python and Go.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;There are more and more things you need to consider. No longer a baby now, please take care yourself and your family.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Distributed Filesystem Overview</title>
+   <link href="http://daidong.github.io/2013/07/23/distributed-filesystem-overview.html"/>
+   <updated>2013-07-23T00:00:00-05:00</updated>
+   <id>http://daidong.github.io/blog/2013/07/23/distributed-filesystem-overview</id>
+   <content type="html">&lt;h1&gt;Distributed Filesystem Overview&lt;/h1&gt;
+
+&lt;p class=&quot;meta&quot;&gt;23 Jul 2013 - Lubbock&lt;/p&gt;
+
+
+&lt;p&gt;Distributed Filesystems can be divided into four categories acccording to WIKI pages. &lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_file_systems&quot;&gt;Distributed Filesystem&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Distributed fault-tolerant file systems&lt;/li&gt;
+&lt;li&gt;Distributed parallel file systems&lt;/li&gt;
+&lt;li&gt;Distributed parallel fault-tolerant file systems&lt;/li&gt;
+&lt;li&gt;Distributed peer-to-peer file systems&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;For distributed fault-tolerant file systems, it replicates data between nodes (between servers or servers/clients) for high availability and offline (disconnected) operation.&lt;/p&gt;
+
+&lt;p&gt;Distributed parallel file systems stripe data over multiple servers for high performance. They are normally used in high-performance computing (HPC). Some of the distributed parallel file systems use object storage device (OSD) (In Lustre called OST) for chunks of data together with centralized metadata servers. This filesystems include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fraunhofer Parallel File System (FhGFS) from the Fraunhofer Society Competence Center for High Performance Computing. Available free of charge for Linux under a proprietary license. (High availability features are on the roadmap.)&lt;/li&gt;
+&lt;li&gt;Parallel Virtual File System (PVFS, PVFS2, OrangeFS). Developed to store virtual system images, with a focus on non shared writing optimizations. Available for Linux under GPL.&lt;/li&gt;
+&lt;li&gt;Starfish is a POSIX-compatible, N-way redundant file system created by Digital Bazaar Inc. and published under a pseudo open source license. Available for Linux and Mac OS. Windows support is available via Samba.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Distributed parallel fault-tolerant file systems, which also are parallel and fault tolerant, stripe and replicate data over multiple servers for high performance and to maintain data integrity. Even if a server fails no data is lost. The file systems are used in both high-performance computing (HPC) and high-availability clusters. GFS and HDFS belong to this category.&lt;/p&gt;
+
+&lt;h2&gt;PVFS (Parallel Virtual File System)&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;The first version of PVFS was released in 2003, developed by several scientists in Argonne lab and other institutions. It was designed for use in large scale cluster computing. It focused on providing higher speed on larger amount of data sets. The client library provides for high performance access via Message Passing Interface (MPI).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In 1996, Rob Ross etc. published a paper in HPDC(&lt;a href=&quot;http://www.parl.clemson.edu/pvfs/hpdc96/hpdc96.html&quot;&gt;Implementation and Performance of a Parallel File System for High Performance Distributed Applications&lt;/a&gt;) to demonstrate how PVFS was designed and implemented. In this paper, he defined PVFS as a stream-based file system that provides disk striping across multiple nodes in distributed parallel computers and file partitions among tasks in a parallel program.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>200 Papers on High Performance I/O (Part 1. SC)</title>
    <link href="http://daidong.github.io/2013/06/24/hpc-200-papers-sc.html"/>
-   <updated>2013-06-24T00:00:00+08:00</updated>
+   <updated>2013-06-24T00:00:00-05:00</updated>
    <id>http://daidong.github.io/blog/2013/06/24/hpc-200-papers-sc</id>
    <content type="html">&lt;h1&gt;200 Papers on High Performance I/O (Part 1. SC)&lt;/h1&gt;
 
@@ -115,7 +185,7 @@
  <entry>
    <title>Ready To Graduate From Phd.</title>
    <link href="http://daidong.github.io/2013/06/23/ready-to-graduate-from-phd.html"/>
-   <updated>2013-06-23T00:00:00+08:00</updated>
+   <updated>2013-06-23T00:00:00-05:00</updated>
    <id>http://daidong.github.io/blog/2013/06/23/ready-to-graduate-from-phd</id>
    <content type="html">&lt;h1&gt;Ready To Graduate From Phd.&lt;/h1&gt;
 
@@ -133,7 +203,7 @@
  <entry>
    <title>Open Source (Almost) Everything</title>
    <link href="http://daidong.github.io/2011/11/22/open-source-everything.html"/>
-   <updated>2011-11-22T00:00:00+08:00</updated>
+   <updated>2011-11-22T00:00:00-06:00</updated>
    <id>http://daidong.github.io/blog/2011/11/22/open-source-everything</id>
    <content type="html">&lt;h1&gt;Open Source (Almost) Everything&lt;/h1&gt;
 
