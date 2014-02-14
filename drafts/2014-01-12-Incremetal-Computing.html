@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Domino An Incremental Computing Framework in Cloud</title>
+   <meta name="author" content="Dai Dong" />
+   <meta name="readability-verification" content="QCzSs992GxmRYRKVpPeZ6LE2tS8aYKxsSSQKV8YM"/>
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit -->
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+
+<!-- ClickTale Top part -->
+<script type="text/javascript">
+var WRInitTime=(new Date()).getTime();
+</script>
+<!-- ClickTale end of Top part -->
+
+<div class="site">
+  <div class="title">
+    <a href="/">Dai Dong</a>
+    <a class="extra" href="/">home</a>
+  </div>
+  
+  <div id="post">
+<h1>Domino An Incremental Computing Framework in Cloud</h1>
+
+<p class="meta">12 Jan 2014 - Lubbock</p>
+
+
+<h1>Abstraction</h1>
+
+<p>It has been more and more common for applications to obtain the ability of processing incremental inputs in cloud today. However, does not like programming with MapReduce or Dryad, it is still hard for developers to write such incremental applications under large-scale distributed environment. The most obvious reason would be that the efficient incremental algorithms usually are more complex than their non-incremental version and require a total different programming abstractions and runtime supports. Further more, if the applications become complex, like being both incremental and iterative, it would be even harder for developers to design and implement them correctly and efficiently. It has been well recognized that it is not possible to have a general way to transfer usual algorithms into incremental ones efficiently, but it is possible to provide better tools for developers to make this transfer simple and straightforward. In this study, we proposed an incremental computing framework in cloud, namely Domino, which abstracts applications into a serial of triggers. Domino includes a rich set programming abstractions and runtime supports based on this trigger-based programming model to allow developers to write incremental applications in a simple way. Besides, from a careful design, implementation and many novel optimizations, Domino is able to achieve much better performance comparing with current popular MapReduce framework and other incremental models under incremental scenario. Use cases and extensive evaluation results also confirm these advantages, which show a large range of applications can be implemented in Domino in a straightforward way, and their performance easily beats MapReduce for more than ten folders in the best case.</p>
+
+<h1>1. Introduction</h1>
+
+<p>MapReduce has been widely accepted as a standard programming model for large-scale applications since first proposed by Google. It abstracts applications into several sequential map and reduce phases and provides a serial of runtime supports to allow developers to write applications simply and quickly. But MapReduce is limited by its batch nature, which is considered as not fit for incremental applications, which, in real world, are strongly needed whenever we need to process continuous inputs. We can easily name some continuous inputs examples here: the performance measurements in network monitoring and traffic management, log records or click-streams in web tracking and personalization, data feeds from sensor applications, call detailed records in telecommunications, and email messages etc. These strong needs drive researchers pay a lot attentions to extend MapReduce framework at first. Generally, the extended MapReduce frameworks rely on the memorization, which means reuse the existing results: previous intermediated results from map tasks or reduce tasks are stored persistently and waiting for being reused. They assumed that incremental inputs only affect parts of these map and reduce tasks, so, we can reuse those unchanged results. These frameworks worked well in many situations, but they have two obvious drawbacks: first, the incremental processing is actually implemented by explicitly iterative calling of the MapReduce procedure. These iterative callings are usually based on a fix interval, which may introduce a unacceptable long response time if the interval is too long, or place a unnecessary high pressure on the cluster if the interval is too short. An accurate interval should not be fix and actually hard to decide by developers. Second, the results reuse in many algorithms is complex and fine-grained, it is not possible to simply reuse them on map or reduce tasks level. For example, the K-Clustering algorithms iteratively calculates which clustering that all the vectors should belong to based on current set of central points and use these belong-to information to calculate a new set of central points. So, in each iteration, we actually calculate results based on a different central points set. It is easy to see that the results from previous MapReduce run can not be simply reused. These results can be reused, but not possible in current batch-based MapReduce way. We will describe how it works in our Domino framework in later sections.</p>
+
+<p>Due to the limitations of MapReduce and its extensions, the event-driven programming models emerged in cloud computing recently. In these models, applications are triggered by external events which, in our case, are incremental inputs. Most of these event-driven models are designed and implemented based on triggers or observers, which monitor the inputs as their name suggest. Oolong and Percolator are two typical examples here. Percolator was specifically designed for Google's PageRank applications and has been actually largely deployed. Comparing with Percolator, Oolong was simpler and provided less functionalities. But the problem of them is common. They both missed the abilities of being a general framework for incremental computation as not providing necessary programming abstractions and runtime supports for different kinds of incremental applications. The most critical missing part is that both Percolator and Oolong did not consider the synchronization between parallel executions well: Oolong considered itself as a pure asynchronous framework, and Percolator only provided write transactions which was used to keep the data consistency instead of synchronize different executions. However, for many applications, this missing synchronization is critical for the correctness of them. As a result, synchronization always plays an indispensable role in many parallel programming model, like MPI or OpenMP. Besides, current event-based models are more like a auxiliary tool instead of a standalone programming framework: no way to start applications on an existing dataset, no definition on the interactions among different triggers/observers, no clear fault-tolerance and recovery of trigger/observer executions, no scheduler for triggers/observers, and many other core components that is necessary for different incremental applications.</p>
+
+<p>In this paper, we present Domino, a general trigger-based incremental programming framework with a clear and flexible synchronization semantic to coordinate triggers, an efficient fault-tolerance and trigger recovery strategy, a simple FIFO scheduler, and most importantly, core components that make all these together to be a general efficient framework. Based on our use cases and evaluations, Domino is able to allow developers to write a border range of large-scale incremental applications more simply and more efficiently.</p>
+
+<p>The rest of this paper is organized as follows. In Section 2, we briefly introduce the trigger-based programming model and the core concepts of the Domino framework. In Section 3, we describe the detailed design, implementation, and optimization strategies of Domino. In Section 4, we report the experimental results for both the Domino framework itself and applications developed with it and running on it. At last, we discuss related work, compare it with Domino, and conclude this study.</p>
+
+<h1>2. Motivation</h1>
+
+<p>In this section, we will discuss the different components needed in implementing incremental version of different algorithms and show how these components should work together by introducing two simple examples: PageRank and Clustering.</p>
+
+<p>There are many algorithms need to be rewritten in a incremental way. Different from the original algorithms, the incremental ones are more concentrating on the new inputs. By combining results from the new inputs and results from the existing datasets, the incremental algorithms will represent the correct results continuously. Here, we can simply divide these algorithms into different categories based on how they process these new inputs.</p>
+
+<ul>
+<li><p>The simplest case would be that the algorithms only need to process the newly incoming data once and write results somewhere else for querying in the future. This is similar with triggers in database fields, which work as a auxiliary tool for data integrity, authorization, post-check, and view maintain. What the framework needs to provide for these applications would be just as simple as the basic trigger mechanism in database: provides methods for applications to demonstrate which inputs they are monitoring and makes sure corresponding actions will take place whenever new inputs arrive at the monitored dataset.</p></li>
+<li><p>The second case is that current trigger generates results from new inputs, and the algorithm needs to accumulate or aggregate them with other results generated from other triggers or applications, and finally writes results somewhere for future querying. Lots of applications belong to this category, for example, the WordCount algorithm, which needs to accumulate all the occurrences of a word from different files. Clearly, to implement such applications, we need mechanisms to accumulate results from different sources including other triggers and applications etc. Given this feature, we can implement these algorithms with two triggers: the first monitors on changing inputs and generates partial results; the second accumulates those partial results with other data into the final results, which would be persists finally.</p></li>
+<li><p>A more complex situation would be the iterative algorithms that need accumulating, which means the final results from accumulating will change some values elsewhere and activate triggers on these new values. This shows a propagation of changing in algorithms. To write such iterative algorithms, we first need to provide mechanism to stop them dynamically. This asks for a stop-condition for each trigger. Second, the iterative algorithms with incremental inputs may introduce executions working under different iterations and on different inputs. These executions may be able to mix together or not according to the algorithm itself. This asks for a clear multiplex version management to allow the systems to be aware of the difference among executions and finally be able to provide a flexible synchronization mechanism between these executions according to users' logic. Many applications belong to this categories, for example, the SSSP (Shortest Single Source Path) in graph, the PageRank algorithm, etc.</p></li>
+<li><p>What we are talking about before are these algorithms that the incremental inputs only affect part of whole computation, like a new edge in the shortest single source path problem (SSSP) actually only may change the shortest distance of the two vertex of this edge. So that decomposing the computation based on data updates will greatly save the unnecessary computation. But, there are algorithms that one tiny change in the inputs may change all the computations. For example, in clustering algorithm, a new vector may cause the clustering centers change and all the vectors should calculate their 'belong-to' based on these new clustering centers. In the worst case, one new vector can change all the clusterings. Even for these applications, there are still lots of fine-grained unnecessary computations under incremental scenarios. To support such algorithms, we should provide applications the ability to activate actions on all the datasets efficiently and also provide ways to reduce the unnecessary computations at the same time. Besides, the ability to activate actions on all current datasets is also useful when we start an incremental algorithm with existing datasets.</p></li>
+</ul>
+
+
+<h2>2.1 Examples</h2>
+
+<p>PageRank and Clustering are two widely used algorithms in data mining, and they both have strong needs to be incremental as the datasets they suppose to process are large-scale and increasing continuously.</p>
+
+<p>As we knew, PageRank algorithm was proposed by Brian and Page as the foundation of Google search engine. This algorithm has been well studied, so there are many variations including some incremental versions since it was proposed. But in this example, we only show how the initial non-incremental version can be implemented to process incremental inputs under Domino, as a demonstration that how to apply Domino model into general non-incremental algorithms.</p>
+
+<p>The initial PageRank algorithm calculates the priority of web pages (the PageRank value) based on links to them iteratively. It starts each page at rank of 1. On each iteration, it calculates the new PageRank value as a summation of all of its incoming edges' weights and updates all the outgoing edges' weights based on this new PageRank value. The execution stops when the difference between two continuous PageRank values of each page is smaller than a predefined value (the algorithm converges). Due to the web pages always changing, PageRank runs on snapshot traditionally. This would introduce a long delay between different snapshots. As an opposition, using the Domino model, it is easy to program it in an incremental way without processing the unchanged pages.</p>
+
+<p>The PageRank is both incremental and iterative and the updated pages only affect the connected pages, according to the categories we listed before, it should belong to category 3. To implement such algorithm in incremental way, first of all, there should be a trigger monitoring the page repository, so that whenever the contents or the PageRank value of a page change, the trigger can calculate and update all its outgoing edges' weights. Second, the summation of all the incoming edges' weights asks for an accumulation trigger, which monitors on the incoming edges' weights of every page and sums them to form the new PageRank value for that page. This new PageRank value will ask the first trigger to run again. So these two triggers run iteratively until converge. To stop the algorithms whenever convergence is achieved, the incremental applications should specify a stop-condition on the first trigger to check whether the updated PageRank value is convergent already.</p>
+
+<p>This incremental version of PageRank will work fine except for the summation part. Let's consider the executions of this algorithm again with the imbalanced execution speed. Say in a web graph, there is a <code>page_0</code> connecting to <code>page_1</code> and <code>page_2</code>, which, based on our assumption, both connect back to <code>page_0</code>. So the changes on <code>page_0</code> will change the PageRank values of <code>page_1</code> and <code>page_2</code>, which controversially affect <code>page_0</code> back. If all executions on <code>page_2</code> are much slower than other pages, it is easy to find out that when the new PageRank value on <code>page_2</code> affects the incoming edges' weights of <code>page_0</code> at the first time, there might have been several updates from <code>page_1</code> already since all the executions are asynchronous as we do not define any blocks or waiting in the application. If the accumulating trigger just sums all the latest incoming edges' weights without considering where these values are generated from, then the execution would be different from how the initial algorithm runs, as the initial algorithm runs iteratively with a strong synchronization between different iterations. To make it possible to implement such algorithm, Domino provides different synchronization semantics including totally asynchronous execution, wait-free multi-version synchronization, and wait-based strong synchronization. These different semantics are necessary to implement a border range of incremental algorithms efficiently and simply, which are missing in most of current trigger-based or observer-based programming frameworks.</p>
+
+<p>Clustering is another widely used data mining algorithm for classify items based on their similarities. It also contains two phases, which are easily implemented in MapReduce. First, it calculates the distances of each item from the k random chosen central points and chooses the nearest as the 'belong-to' clustering of an item. Second, based on the 'belong-to' items of each clustering, it calculates the new central points of that clustering. It repeats these two phases until algorithm converges. It is easy to see this algorithm includes iterative and incremental computing, but most differently, each time new item is added, the central points will change and asks for a recalculation of distance for all the items. In previous subsection, we classify this kind of applications as category 4 as a small change may cause a total recalculation in them. These applications require different abilities from what PageRank asks.</p>
+
+<p>To implement such algorithm in incremental way, it is clear that we need two triggers corresponding to the two phases. The first trigger monitors the item repository, calculates the clustering for a new item, and writes it into the 'belong-to' of the chosen clustering. The second trigger monitors on the 'belong-to' of clusterings, calculates new central points for the changing clusterings. If the central points change, we should be able to tell the first trigger to run again on all existing items to generate new 'belong-to' based on the new the central points. Activating all the items being processed plays a critical role in Domino which is apparently missing in other trigger-based or observer-based models. Besides, it also provides a great place for developers to add filter-condition to eliminate the unnecessary computing in a fine-grained way. Like in this clustering example, it would not necessary to recalculate the 'belong-to' for items in clusterings which are far away from the changing clustering. This kind of optimizations reduce the computation a lot and hard to deploy under current memorization-based incremental frameworks. Another thing we need to note in clustering example would be the synchronization in the second trigger, which accumulates the 'belong-to' to generate new central point. We asked for a strong synchronization here because the result of this trigger will ask for an all-item activation which consumes lots of system resources. It would be better to make sure each all-time activation is necessary. Domino provides this ability by providing different synchronization semantics.</p>
+
+<p>To sum up, we list the necessary and currently missing components for a general incremental framework derived from previous discussions and examples, the main contributions of this study also come from these parts:</p>
+
+<ul>
+<li><p>The extended and flexible synchronization semantic is critical to ensure the developers that their incremental applications will behave correctly under highly distributed cloud environment. In this study, we firstly provided both synchronous and asynchronous semantics for applications, then especially focused on a novel design and implementation of wait-free eventual synchronization and wait-based strong synchronization. To our best knowledge, this is the first study that provided these synchronizations in a trigger-based incremental programming model.</p></li>
+<li><p>The enriched programming abstractions to support different incremental applications is also important to allow developers to write applications easily and efficiently. We introduced plain trigger, accumulation trigger, stop-condition, filter-condition, and the all-activation to start incremental applications on an existing dataset as a whole programming package in this study. Most of these abstractions are missing in other incremental frameworks, but necessary in real applications.</p></li>
+<li><p>We also proposed and prototyped a set of optimization strategies during designing and implementing this general framework, including execution preemption, result reuse, and gathered I/O, which play an important role in making Domino an efficient framework. We also prototyped the fault tolerance in Domino runtime systems to make it more practical in real usage.</p></li>
+</ul>
+
+
+<h1>3. Programming Model Abstraction</h1>
+
+<p>Domino programming model is a trigger-based model, it follows the event-condition-action (ECA) model, which can be simply described as: fired events that satisfy the given conditions will trigger actions to execute. However, to extend this ECA model from database field to cloud computing, we need more rich abstractions as shown in this section.</p>
+
+<h2>3.1 Monitor on Dataset</h2>
+
+<p>The most basic abstractions would be the monitor on dataset which generate events from data updates. The datasets that the applications can monitor on usually are collected from different kinds of on-line applications or services, which may be any formations: structured, semi-structured, or unstructured. So, in Domino, we abstracted all these datasets as a sparse table: each row in this table represents a data item; each row can contain millions of sparse fields (columns) to describe the diversity kinds of cloud data, besides, the similar fields can be gathered as a fields set to describe data more easily. Based on this model, the data updates can be viewed as insert, delete, or update operations on tables, and each operation will generate an event. This table-based data model is similar to Bigtable model and has been proven to be capable to describe diversity kinds of datasets in cloud applications. In fact, the Domino is implemented on top an open-source version of Bigtable - HBase. In fact, Bigtable arrange data into tables which may contain billions of rows and thousands of column-families with millions of columns. Column-family is a collection of similar columns and is guaranteed to store in the same physical server. The monitor of Domino can be set based on tables, column-families, or even columns. Then, as we have described, any insert, delete, update operations on the monitored places will generate events. Following code shows the constructor function that developers need to use to create a trigger. Developers can define triggers to monitor on specific parts of tables using three parameters: <em>tableName</em>, <em>columnFamily</em>, and <em>column</em>, which can be regular expressions.</p>
+
+<p><code>
+Trigger(triggerName,tableName,columnFamily,column,actionClass,TriggerType);
+</code></p>
+
+<p>In this constructor method for Trigger instance, <em>actionClass</em> provides the Java class where the actions triggered by monitored events are defined. <em>TriggerType</em> gives the developers an opportunity to change the trigger behaviors. We will describe these two parameters in next several sections.</p>
+
+<h2>3.2 Execution Based on Events</h2>
+
+<p>Whenever the events are generated, they need to be processed. As we have described in <em>Motivation</em> section, there are different behaviors to events for different applications. Domino provides users comprehensive abstractions for them.</p>
+
+<p>For the simplest case where applications simply process incremental inputs independently, triggers work like what they do in database. For these applications, Domino provides a default trigger called <em>plan trigger</em>, which simply responds to new data streams and executes actions independently in different servers in parallel. Developers can create this trigger by set the <em>TriggerType</em> parameter to <code>NULL</code> when use the Trigger constructor function.</p>
+
+<p><code>
+Trigger(triggerName,tableName,columnFamily,column,actionClass, NULL);
+</code></p>
+
+<p>If applications need iterative processing based on previous simplest case, developers do not need to change any definition of triggers except make sure that the outputs of defined trigger are located at the monitored parts of the table. Then, the framework will keep making the new outputs activate trigger to run again. In such condition, to stop the possible infinite iterative executions, Domino provides a <em>stop-condition</em> to filter events when the applications should stop. As following code example shows, it is a user-defined function which returns <em>true</em> or <em>false</em> to denote whether current event should be processed or not respectively. They are defined inside the <em>actionClass</em> as a inheritable abstract method.</p>
+
+<p><code>
+    @Override
+    public boolean filter(HTriggerEvent hte) {
+      return true;
+    }
+</code></p>
+
+<p>For these applications where the algorithms ask for accumulating partial results from other triggers, Domino defined an <em>accumulator trigger</em> for them. An accumulator trigger can be defined in two ways as follow in Domino API.</p>
+
+<p><code>
+Trigger(triggerName,tableName,columnFamily,actionClass,AccTrg);
+Trigger(triggerName,actionClass);
+</code></p>
+
+<p>The first API allows developers specify which parts of tables they need the accumulator trigger work on. The <em>TriggerType</em> was set to <em>AccTrg</em> denoting this is an accumulator trigger. This API does not provide <em>column</em> parameter as we restrict this kind of trigger will accumulate all the columns under the given <em>columnFamily</em>. This restriction is needed for a better efficiency of Domino, we will describe it in the implementation section in detail. The second API is much simpler only includes <em>triggerName</em> and <em>actionClass</em> without specifying any table information. Whenever developers use this API, the Domino runtime will automatically create a new table with one column-family named <em>'Partial-result'</em>. This new table is invisible to other applications to avoid the misbehaviors from shared users. Domino allows developers to persistent this invisible table into a normal table with a provided <code>dataPersist</code> API. The reason of introducing the simplified API is that we try to isolate the complex accumulation from other applications and expose the final results based on the algorithms. It is recommended to use the simpler one in real application development also because it reduce the possibility of misuse the accumulator trigger on some ill-formed tables.</p>
+
+<p><code>
+dataPersist(triggerName);
+</code></p>
+
+<p>The last category of applications needs a so-called 'all-activation' behaviors on triggers during executions. Besides during executions, all the incremental applications also need the 'all-activation' behavior when we try to start them: when an incremental applications are deployed, there must have been existing datasets there. It will be incorrect if just ignore these existed data or be inappropriate if the applications ask another application to process them first. Existing dataset can be viewed as an ordered queued events waiting for processing. Based on this observation, Domino introduced an 'all-activation' API to ask a trigger to run through all the current data located inside its monitored parts. Using following API, developers can ask a specific trigger to start process all its monitored data.</p>
+
+<p><code>
+allActivate(triggerName);
+</code></p>
+
+<p>Applying <em>allActivate</em> function as a starter of an incremental application is simpler than using it during the execution, like the necessary 'all-activation' in K-clustering algorithm we have discussed before. In such applications, the <em>allActivate</em> function may be issued from different places, for example, in the K-clustering example, both external updates of items and the internal iterations will generate new set of central points, then call the <em>allActivate</em> on the first trigger to re-exam all the items based on the new central points. Under this condition, the Domino runtime will submit the 'all-activation' to trigger and ask it to run at the first time. Then, as long as that trigger is under 'all-activation' status, any consequent 'all-activation' requests will record and accumulated. These cached requests will be submitted once the trigger finishes current run. Note that, the trigger that can do the 'all-activation' must be a <em>plain trigger</em> and created with a specific trigger type: AllAct. Developers also can implement the abstract function <em>allActFilter()</em> to filter out unnecessary computations.</p>
+
+<p><code>
+Trigger(triggerName,tableName,columnFamily,column,actionClass,AllAct);<br/>
+</code></p>
+
+<p><code>
+    public boolean allActFilter(List&lt;HTriggerEvent> htes) {
+      return true;
+    }
+</code></p>
+
+<p>This <em>allActFilter()</em> method is a supplement of <em>filter()</em> method. It will process all the events that are buffered and recorded by <em>allAction</em> function.</p>
+
+<h2>3.3 Asynchronizations &amp; Eventual Wait-free Synchronization</h2>
+
+<p>Providing developers flexible, easy-used, and efficient synchronization semantics, especially the new eventual-based wait-free synchronization is a main contribution of this study. In fact, Domino provides different semantics including natural asynchronous execution, and wait-free eventual synchronization.</p>
+
+<p>Asynchronous executions are natural for triggers: first, all the <em>plain triggers</em> are asynchronous, they execute in parallel without any coordination; second, all the <em>accumulator triggers</em> without special specification are also asynchronous, they accumulate partial results whenever updates arrive.</p>
+
+<p>However, asynchronous executions are far from enough especially for  accumulation. Take synchronous PageRank as an example, It requires all the in-going edges' weights to be accumulated should come from the same previous iteration. This is impossible without any global coordination. The most simple reason would be the different execution speed of different nodes as we described in previous section.</p>
+
+<p>As we may know, there are already several ways to provide such global coordination. The most straightforwards way would be using distributed locks to enforce the accumulator trigger wait until all of triggers need synchronization has finished. But the problem is, in the incremental computing scenario, it is not possible to know when all the trigger instances have finished because no one knows how many updates are there and how many trigger instances we need to wait for. Another possible solution for this is <em>time window</em>. It defines a fix waiting time as a time window (<em>t_w</em>), and makes the accumulation progress each <em>t_w</em> even without knowing about the trigger instances number. However, the time in different machine is not identical even sync with GPS time. This gives a potential of chaos caused by time mismatch in future. Also, It is too complex because we need to record and manage all the time window information for each result: not too many iterations will easily break down the whole system.</p>
+
+<p>Domino provides a much simpler solution for such synchronization requirements. Developers only need to specify the trigger type to <em>SynAcc</em> when they create a new accumulator trigger as following code shows. Then, during execution, this trigger will automatically be synchronous. Besides, the wait-free eventual synchronization does not introduce any blocks on the execution of the accumulator triggers, It allows asynchronous executions of triggers and synchronizes them later using their version numbers. In the next section, we describe the design and implementation of Domino, explaining the non-blocking eventual synchronization in greater detail.</p>
+
+<p><code>
+Trigger(triggerName,tableName,columnFamily,column,actionClass,SynAcc);<br/>
+</code></p>
+
+<p><code>
+    public boolean incr(HTriggerEvent hte, PartialResult r){}
+</code></p>
+
+<p>The <em>incr()</em> method is also an abstract method for <em>SynAcc</em> trigger type. It was used to reuse the partial results generated during eventual synchronizing. It is one of the optimizations we introduced to Domino to improve the performance.</p>
+
+<h1>4. Implementation &amp; Optimization</h1>
+
+<h1>5. Evaluation &amp; Examples</h1>
+
+<h1>6. Related Work</h1>
+
+<h1>7. Conclusion</h1>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+  </ul>
+</div>
+  
+  <div class="footer">
+    <div class="contact">
+      <p>
+        Dai Dong<br />
+        daidongly@gmail.com
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="http://github.com/daidong/">github.com/daidong</a><br />
+        <a href="http://weibo.com/u/1670741644">weibo.com/u/1670741644</a><br />
+      </p>
+    </div>
+  </div>
+</div>
+
+<a href="http://github.com/daidong"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+<!-- ClickTale Bottom part -->
+<div id="ClickTaleDiv" style="display: none;"></div>
+<script type="text/javascript">
+if(document.location.protocol!='https:')
+  document.write(unescape("%3Cscript%20src='http://s.clicktale.net/WRb.js'%20type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+if(typeof ClickTale=='function') ClickTale(206,0.3,"www03");
+</script>
+<!-- ClickTale end of Bottom part -->
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6016902-1");
+pageTracker._trackPageview();
+</script>
+<!-- Google Analytics end -->
+
+</body>
+</html>

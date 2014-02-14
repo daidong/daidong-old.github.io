@@ -4,13 +4,310 @@
  <title>Tom Preston-Werner</title>
  <link href="http://daidong.github.io/atom.xml" rel="self"/>
  <link href="http://daidong.github.io"/>
- <updated>2014-01-02T00:22:25-06:00</updated>
+ <updated>2014-02-13T21:09:15-06:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>Dai Dong</name>
    <email>daidongly@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>SC Read List In Last 5 years</title>
+   <link href="http://daidong.github.io/2014/02/12/sc-read-list.html"/>
+   <updated>2014-02-12T00:00:00-06:00</updated>
+   <id>http://daidong.github.io/blog/2014/02/12/sc-read-list</id>
+   <content type="html">&lt;h1&gt;SC Read List In Last 5 years&lt;/h1&gt;
+
+&lt;p class=&quot;meta&quot;&gt;12 Feb. 2014 - Lubbock&lt;/p&gt;
+
+
+&lt;p&gt;In this post, we are trying to go through all the papers in SC in last 5 years
+(2008 - 2013) to see the hot topics about high performance I/O or storage systems. The fields
+we actually care about in this post only contain: High performance file systems,
+ memory storages, solid storage devices. This is a huge project because there
+are about hundreds of papers each year and lots of them are relevant with I/Os.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2008, people are still talking about &quot;entering the petaflop era&quot; and finally
+acheive the 1.38 Pflop/s peek (double precision) performance. It is
+funny that, only three or four years later, the &quot;petaflop era&quot; has passed and
+the roadmap for &quot;exscale&quot; is comming.&lt;/p&gt;
+
+&lt;p&gt;There are some papers describing architecture, experience, applications on the first several generation &quot;PetaScale&quot; computers:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Kevin J. Barker et al.] Entering the petaflop era: the architecture and performance of Roadrunner&lt;/li&gt;
+&lt;li&gt;[S. Alam et al.] Early evaluation of IBM BlueGene/P&lt;/li&gt;
+&lt;li&gt;[Gregory L. Lee et al.] Lessons learned at 208K: towards debugging millions of cores&lt;/li&gt;
+&lt;li&gt;[Heshan Lin et al.] Massively parallel genomic sequence search on the Blue Gene/P architecture&lt;/li&gt;
+&lt;li&gt;[Subhash Saini et al.] Scientific application-based performance comparison of SGI Altix 4700, IBM POWER5+, and SGI ICE 8200 supercomputers&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Two papers from Wei-Keng Liao and Alok Choudhary group about caching:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Wei-keng Liao et al.] Dynamically adapting file domain partitioning methods for collective I/O based on underlying parallel file system locking protocols&lt;/li&gt;
+&lt;li&gt;[Arifa Nisar, Wei-keng Liao, et al.] Scaling parallel I/O performance through I/O delegate and caching system&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Also there are two papers from Yong Chen and XianHe Sun group about Prefetching:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Yong Chen et al.] Hiding I/O latency with pre-execution prefetching for parallel applications&lt;/li&gt;
+&lt;li&gt;[Serendra Byna et al.] Parallel I/O prefetching using MPI file caching and I/O signatures&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Others:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Philip H. Carns et al.] Using server-to-server communication in parallel file systems to simplify consistency and improve performance&lt;/li&gt;
+&lt;li&gt;[Ryutaro Susukita et al.] Performance prediction of large-scale parallell system and application using macro-level simulation&lt;/li&gt;
+&lt;li&gt;[Hongzhang Shan et al.] Characterizing and predicting the I/O performance of HPC applications using a parameterized synthetic benchmark&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;It is interesting that in this year, people are more concentrating on using the new petaflop machines: different
+applications are immigrated to those new machines and new strategies are proposed to perdict and characterize
+their performance. In storage? the caching and prefetching are still the core topics.  There are actually not so many papers about some very popular topics which are proven to
+dominate this conference in next several years: GPU, Cloud (Virtualization, MapReduce, HDFS), SSD and Memory-storage.
+ It is interesting to see how these things became hotter and hotter. You can access the proceeding of 2008 SC
+from here: &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=1413370&amp;amp;picked=prox&quot;&gt;SC 2008 Proceeding&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2009, multi-core is hot here. It is so clear to see the transfer of interests from next generation
+high performance machines to the so-called multi/many cores systems or on-chip systems. At the same
+time, there are not many papers about storage systems. I listed them following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Yu Hua et al.] SmartStore: a new metadata organization paradigm with semantic-awareness for next-generation file systems&lt;/li&gt;
+&lt;li&gt;[John Bent et al.] PLFS: a checkpoint filesystem for parallel applications&lt;/li&gt;
+&lt;li&gt;[Jing Xing et al.] Adaptive and scalable metadata management to support a trillion files&lt;/li&gt;
+&lt;li&gt;[Samuel Lang et al.] I/O performance challenges at leadership scale&lt;/li&gt;
+&lt;li&gt;[Shih-wei Liao et al.] Machine learning-based prefetch optimization for data center applications&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Among these papers, PLFS is a pretty outstanding one here. Although it is not well accepted till today (2014), but
+it does affect lots of parallel filesystems. Groups from ANL with Rob Ross have several papers in this
+meeting including:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Samuel Lang et al.] I/O performance challenges at leadership scale&lt;/li&gt;
+&lt;li&gt;[Wesley Kendall et al.] Terascale data organization for discovering multivariate climatic trends&lt;/li&gt;
+&lt;li&gt;[Tom Peterka et al.] A configurable algorithm for parallel image-compositing applications&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;These results are generated right after the IBM Blue/P (Intrepid) has been installed at ANL in 2008, when
+it got rank #3 on the June Top 500 list &lt;a href=&quot;http://en.wikipedia.org/wiki/Blue_Gene&quot;&gt;Wiki&lt;/a&gt;. This is also part of the reason why they are able to write a
+paper to talk about the I/O performance challenges at leadership scale in a very general way. It is a
+pity that even China has lanched its TianHe-1 and TianHe-2 in last two years, there still not enough
+papers about them in such conferences like SC. You can access the proceeding of 2009 from here: &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=1654059&amp;amp;picked=prox&quot;&gt;SC 2009 Proceeding&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2010, there is a blooming on flash-based storage systems and GPUs. In general, people began to notice
+flash can be well used in high performance clusters. The reason is clear: disks are not fast enough for current
+applications and future &quot;Exscale&quot; applications. We list the papers about flash-based or any other new
+device-based storage papers here:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Adrian M. Caulfield, et al.] &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=1884660&amp;amp;dl=ACM&amp;amp;coll=DL&amp;amp;CFID=271517975&amp;amp;CFTOKEN=30780424&quot;&gt;Understanding the Impact of Emerging Non-Volatile Memories on High-Performance, IO-Intensive Computing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Jiahua He, et al.] &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=1884661&amp;amp;dl=ACM&amp;amp;coll=DL&amp;amp;CFID=271517975&amp;amp;CFTOKEN=30780424&quot;&gt;DASH: a Recipe for a Flash-based Data Intensive Supercomputer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;There are also several papers about I/O systems as following list shows. The first paper &quot;I/O forwarding&quot;
+came from ANL (Rob's group); it is still based on the IBM Blue Gene/P System, which is  currently (2010)
+still one of the most fastest &quot;Petaflop&quot; super-computers. In fact, in this year, only from the paper name,
+we can see bunch of papers based on this IBM Blue Gene/P computers. Back to the storage systems, we can
+easily to see that the core topic of this year is coordination among lots of storage servers.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Venkatram Vishwanath, et al.] &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=1884678&amp;amp;dl=ACM&amp;amp;coll=DL&amp;amp;CFID=271517975&amp;amp;CFTOKEN=30780424&quot;&gt;Accelerating I/O Forwarding in IBM Blue Gene/P Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Jay Lofstead, et al.] Managing Variability in the IO Performance of Petascale Storage Systems&lt;/li&gt;
+&lt;li&gt;[Xuecheng Zhang, et al.] IOrchestrator: Improving the Performance of Multi-node I/O Systems via Inter-Server Coordination&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;You can access the proceedings of 2010 from here: &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=1884643&amp;amp;picked=prox&quot;&gt;SC 2010 Proceeding&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2011, there is a standalone session named &quot;coordinating I/O&quot; which is pretty the continuation of last
+year's path. We list all the papers in this section:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Huaiming Song, et al.] Server-side I/O coordination for parallel file systems&lt;/li&gt;
+&lt;li&gt;[Xuechen Zhang, et al.] QoS support for end users of I/O-intensive applications using shared storage systems&lt;/li&gt;
+&lt;li&gt;[Venkatram Vishwanath, et al.] Topology-aware data movement and staging for I/O acceleration on Blue Gene/P supercomputing systems&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;We can see these old faces showing again in this year's SC conference. Venkatram works on I/O staging after
+their I/O forwarding works. Xuechen Zhang continued their server-side coordination work. Huaiming Song from
+XianHe Sun's group proposed a very interesting strategy to coordinate requests on the server side to accelerate
+the average finish time of each request. This is the first SC paper since 2008 from XianHe Sun's group.&lt;/p&gt;
+
+&lt;p&gt;IBM Blue Gene/Q began to deploy in different instituations like &lt;a href=&quot;Lawrence%20Livermore%20National%20Laboratory&quot;&gt;LLNL&lt;/a&gt;. So
+there are papers talking about it got published easily:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Dong Chen, et al.] The IBM Blue Gene/Q interconnection network and message unit&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Also, we can see that there is a new kind of papers showing in this year: Querying large scale data. It is well
+recognized that querying large scale data is another big problem once we are able to generate huge amount of
+data with much more compute resources.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Kalin Kanov, et al.] I/O streaming evaluation of batch queries for data-intensive computational turbulence&lt;/li&gt;
+&lt;li&gt;[Jerry Chou, et al.] Parallel index and query for large scale data analysis&lt;/li&gt;
+&lt;li&gt;[Siriram Lakshminarasimhan, et al.] ISABELA-QA: query-driven analytics with ISABELA-compressed extreme-scale scientific data&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Besides, the MapReduce model hit the scientific guys in this year, we have a whole session named &quot;MapReduce and network Qos&quot;
+in this year, we can see some interesting works here:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Joe B. Buck, et al.] SciHadoop: array-based query processing in Hadoop&lt;/li&gt;
+&lt;li&gt;[Wittawat Tantisiriroj, et al.] On the duality of data-intensive file system design: reconciling HDFS and PVFS&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;There is not any research paper bout flash-based storage systems, but there are still papers about other
+possible new devices that can be the storage materials in future, for example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Xiaojian Wu, et al.] SCMFS: a file system for storage class memory&lt;/li&gt;
+&lt;li&gt;[Michael Frasca, et al.] Virtual I/O caching: dynamic storage cache management for concurrent workloads&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;It seems that people are not satisfied with the flash-based storage systems. They are asking for a higher
+speed way to process data. Memory may be a good way here. There is several very interesting papers that i should check out in this year:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Peter M. Kogge, et al.] Using the TOP500 to trace and project technology and architecture trends&lt;/li&gt;
+&lt;li&gt;[Mario Lassnig, et al.] A similarity measure for time, frequency, and dependencies in large-scale workloads&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Exascale has been a topic here, we can see it in these papers:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Jen-Hsun Huang] SC 2011 Keynote&lt;/li&gt;
+&lt;li&gt;[Osman Sarood, et al.] A 'cool' load balancer for parallel applications&lt;/li&gt;
+&lt;li&gt;[Kurt Ferreira, et al.] Evaluating the viability of process replication reliability for exascale systems&lt;/li&gt;
+&lt;li&gt;[Sheng Li, et al.] System implications of memory reliability in exascale computing&lt;/li&gt;
+&lt;li&gt;[Abhinav Bhatele, et al.] Avoiding hot-spots on two-level direct networks&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;This year's proceedings can be retrieved here: &lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2063384&amp;amp;picked=prox&quot;&gt;SC 2011 Proceeding&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2012, graph algorithm in HPC is a very hot topic: actually we can see two whole sessions about this topic:
+&lt;em&gt;Breadth first search&lt;/em&gt; and &lt;em&gt;Graph algorithms&lt;/em&gt;. Graph is actually very hot in that year, in other conferences,
+it also occupied a lot. Besides, we can see some interesting sessions too: &lt;em&gt;Big data&lt;/em&gt;, &lt;em&gt;Grid/Cloud networking&lt;/em&gt;,
+&lt;em&gt;Cloud Computing&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;In HPC I/O society, the most significant changing is: first, I/O is more important than ever before:
+we actually have three sessions about I/O or storages: &lt;em&gt;Analysis of I/O and storage&lt;/em&gt;, &lt;em&gt;Optimizing I/O for analytics&lt;/em&gt;, &lt;em&gt;Visualization and analysis of massive data sets&lt;/em&gt;.
+Second, We are shifting from write-side optimization to the read-side or analysis side optimization. We can see
+the paper list here:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Robert Henschel, et al.] Demonstrating lustre over a 100Gbps wide area network of 3,500km&lt;/li&gt;
+&lt;li&gt;[Dirk Meister, et al.] A study on data deduplication in HPC storage systems&lt;/li&gt;
+&lt;li&gt;[Bing Xie, et al.] Characterizing output bottlenecks in a supercomputer&lt;/li&gt;
+&lt;li&gt;[John Jenkins, et al.] Byte-precision level of detail processing for variable precision analytics&lt;/li&gt;
+&lt;li&gt;[Janine Benneth, et al.] Combining in-situ and in-transit processing to enable extreme-scale scientific analysis&lt;/li&gt;
+&lt;li&gt;[Sidharth Kumar, et al.] Efficient data restructuring and aggregation for I/O acceleration in PIDX.&lt;/li&gt;
+&lt;li&gt;[Surendra Byna, et al.] Parallel I/O, analysis, and visualization of a trillion particle simulation&lt;/li&gt;
+&lt;li&gt;[Kalin Kanov, et al.] Data-intensive spatial filtering in large numerical simulation datasets&lt;/li&gt;
+&lt;li&gt;[Boonthanome Nouanesengsy, et al.] Parallel particle advection and FTLE computation for time-varying flow fields&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;As they introduced lots of new stuff in this year SC, there is not enough room for flash-based storage there now.
+In fact, as we have said before, there is an obviuos shift from flash-based storage to memory based storage. In fact,
+based on current research, memory devices especially the new storage level memory devices have significant advantages
+compared with flash. Actually in this year, there are several papers in sessions about the memory storage:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Donghong Wu, et al.] RAMZzz: rank-aware dram power management with dynamic migrations and demotions&lt;/li&gt;
+&lt;li&gt;[Sheng Li, et al.] MAGE: adaptive granularity and ECC for resilient and power efficient memory systems&lt;/li&gt;
+&lt;li&gt;[I-Hsin Chung, et al.] Application data prefetching on the IBM blue gene/Q supercomputer&lt;/li&gt;
+&lt;li&gt;[Lluc Alvarez, et al.] Hardware-software coherence protocol for the coexistence of caches and local memories&lt;/li&gt;
+&lt;li&gt;[Martin Schindewolf, et al.] What scientific applications can benefit from hardware transactional memory?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Although, there are still works on current best high performance machines, it is clear that &quot;Petaflop&quot; machines are not our first concern any more, we want to know what will happen
+in next generation &quot;Exascale&quot; machines.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Dong Chen, et al.] Looking under the hood of the IBM blue gene/Q network&lt;/li&gt;
+&lt;li&gt;[I-Hsin Chung, et al.] Application data prefetching on the IBM blue gene/Q supercomputer&lt;/li&gt;
+&lt;li&gt;[Jun Doi] Peta-scale lattice quantum chromodynamics on a blue gene/Q supercomputer&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;This year's proceedings can be retrieved here: &lt;a href=&quot;http://www.informatik.uni-trier.de/~ley/db/conf/sc/sc2012.html&quot;&gt;SC 2012 Proceeding&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2013, things become more resonable: there are not so many &lt;em&gt;big data&lt;/em&gt;, &lt;em&gt;cloud&lt;/em&gt; things. The very very hot
+graph algorithm also reduces into a shared session with sorting algorithm. People began to really care
+about how the future memory systems for such many cores systems. In fact, we have two sessions about this
+topic: &lt;em&gt;Memory Hierarchy&lt;/em&gt; and &lt;em&gt;Memory resilience&lt;/em&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Richard M. Yoo, et al.] Performance evaluation of Intel® transactional synchronization extensions for high-performance computing&lt;/li&gt;
+&lt;li&gt;[Jongsoo Park, et al.] Location-aware cache management for many-core processors with deep cache hierarchy&lt;/li&gt;
+&lt;li&gt;[Doe Hyun Yoon, et al.] Practical nonvolatile multilevel-cell phase change memory&lt;/li&gt;
+&lt;li&gt;[Vilas Sridharan, et al.] Feng shui of supercomputer memory: positional effects in DRAM and SRAM faults&lt;/li&gt;
+&lt;li&gt;[Bharan Giridhar, et al.] Exploring DRAM organizations for energy-efficient and resilient exascale memories&lt;/li&gt;
+&lt;li&gt;[Xun Jian, et al.] Low-power, low-storage-overhead chipkill correct via multi-line error correction&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Besides memory, we can see that the I/O is still the core challenge: we can see four sessions talking about
+this problem: &lt;em&gt;IO tuning&lt;/em&gt;, &lt;em&gt;Optimizing data movement&lt;/em&gt;, &lt;em&gt;In-situ data analytics and reduction&lt;/em&gt;, and &lt;em&gt;Improving large-scale computation and data resources&lt;/em&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Sidharth Kumar, et al.] Characterization and modeling of PIDX parallel I/O for performance optimization&lt;/li&gt;
+&lt;li&gt;[Babak Behzad, et al.] Taming parallel I/O complexity with auto-tuning&lt;/li&gt;
+&lt;li&gt;[Da Zheng, et al.] Toward millions of file system IOPS on low-cost, commodity hardware&lt;/li&gt;
+&lt;li&gt;[Joe B. Buck, et al.] SIDR: structure-aware intelligent data routing in Hadoop&lt;/li&gt;
+&lt;li&gt;[Tong jin, et al.] Using cross-layer adaptations for dynamic data management in large scale coupled scientific workflows&lt;/li&gt;
+&lt;li&gt;[Myoungsoo Jung, et al.] Exploring the future of out-of-core computing with compute-local non-volatile memory&lt;/li&gt;
+&lt;li&gt;[Daniel E. Laney, et al.]  Assessing the effects of data compression in simulations using physically motivated metrics.&lt;/li&gt;
+&lt;li&gt;[Marc Gamell, et al.]  Exploring power behaviors and trade-offs of in-situ data analytics&lt;/li&gt;
+&lt;li&gt;[Fang Zheng, et al.] GoldRush: resource efficient in situ scientific data analytics using fine-grained interference aware execution&lt;/li&gt;
+&lt;li&gt;[Eli Dart, et al.] The Science DMZ: a network design pattern for data-intensive science.&lt;/li&gt;
+&lt;li&gt;[James C. Browne, et al.] Enabling comprehensive data-driven system management for large computational facilities.&lt;/li&gt;
+&lt;li&gt;[Jay F. Lofstead, et al.] Insights for exascale IO APIs from building a petascale IO API.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Note that there are lots of applications are actually using &quot;Petaflop&quot; machines now. Also, there is an interesting
+research paper from Jay and Rob on the insights for exascale I/O APIs from existing petascale I/O. This is
+kind of experince paper which includes many tips about next steps.&lt;/p&gt;
+
+&lt;p&gt;This year's proceedings can be retrieved here: &lt;a href=&quot;http://www.informatik.uni-trier.de/~ley/db/conf/sc/sc2013.html&quot;&gt;SC 2013 Proceeding&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Happy New Year</title>
