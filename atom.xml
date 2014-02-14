@@ -4,13 +4,306 @@
  <title>Tom Preston-Werner</title>
  <link href="http://daidong.github.io/atom.xml" rel="self"/>
  <link href="http://daidong.github.io"/>
- <updated>2014-02-13T21:09:15-06:00</updated>
+ <updated>2014-02-14T09:33:45-06:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>Dai Dong</name>
    <email>daidongly@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>FAST Paper List in last 5 years</title>
+   <link href="http://daidong.github.io/2014/02/13/FAST-read-list.html"/>
+   <updated>2014-02-13T00:00:00-06:00</updated>
+   <id>http://daidong.github.io/blog/2014/02/13/FAST-read-list</id>
+   <content type="html">&lt;h1&gt;FAST Paper List in last 5 years&lt;/h1&gt;
+
+&lt;p class=&quot;meta&quot;&gt;13 Feb. 2014 - Lubbock&lt;/p&gt;
+
+
+&lt;p&gt;FAST (USENIX Conference on File and Storage Technologies) is a tremendous successful conference in system
+field. It has been considered as the best system conferences with SOSP and OSDI. FAST has a small community
+and only accepts a very small number of papers each year. In this post, we will go through all the papers
+received in last 5 years (2008 - 2013) to see all these successful research groups and works. Although FAST
+is a conference concentrating storage technologies, it still way out of my knowledge circle to read all of them. So, here, we
+only list papers about the storage performance, storage devices, and caches, eliminating the failures,
+CPUs, networks, model checking, power, and provisioning.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2008, we have two sessions:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Distributed Storage&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Mark W. Storer, et al.] Pergamum: Replacing Tape with Energy Efficient, Reliable, Disk-Based Archival Storage&lt;/li&gt;
+&lt;li&gt;[Brent Welch, et al.] Scalable Performance of the Panasas Parallel File System&lt;/li&gt;
+&lt;li&gt;[Michael J. Demmer et al.] TierStore: A Distributed Filesystem for Challenged Networks in Developing Regions&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Cache&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Binny S. Gill] On Multi-level Exclusive Caching: Offline Optimality and Why Promotions Are Better Than Demotions&lt;/li&gt;
+&lt;li&gt;[Alexandros Batsakis, et al.] AWOL: An Adaptive Write Optimizations Layer&lt;/li&gt;
+&lt;li&gt;[Mingju Li, et al.] TaP: Table-based Prefetching for Storage Caches&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2009,&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Scheduling&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Gokul Soundararajan, et al.] Dynamic Resource Allocation for Database Servers Running on Virtual Storage&lt;/li&gt;
+&lt;li&gt;[Ajay Gulati, et al.] PARDA: Proportional Allocation of Resources for Distributed Storage Access&lt;/li&gt;
+&lt;li&gt;[Alexandros Batsakis, et al.] CA-NFS: A Congestion-Aware Network File System&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Metadata and Optimization&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Andrew W. Leung, et al.] Spyglass: Fast, Scalable Metadata Search for Large-Scale Storage Systems&lt;/li&gt;
+&lt;li&gt;[Brandom Salmon, et al.] Perspective: Semantic Data Management for the Home&lt;/li&gt;
+&lt;li&gt;[Medha Bhadkamkar, et al.] BORG: Block-reORGanization for Self-optimizing Storage Systems&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Distributed storage&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Cezary Dubnicki, et al.] HYDRAstor: A Scalable Secondary Storage&lt;/li&gt;
+&lt;li&gt;[Hakim Weatherspoon, et al.] Smoke and Mirrors: Reflecting Files at a Geographically Remote Location Without Loss of Performance&lt;/li&gt;
+&lt;li&gt;[Michael Vrable, et al.] Cumulus: Filesystem Backup to the Cloud&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Controllers and caching&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Sangeetha Seshadri, et al.] A Systematic Approach to System State Restoration during Storage Controller Micro-Recovery&lt;/li&gt;
+&lt;li&gt;[Xin Liu, et al.] CLIC: CLient-Informed Caching for Storage Servers&lt;/li&gt;
+&lt;li&gt;[Andrey Ermolinskiy, et al.] Minuet: Rethinking Concurrency Control in Storage Area Networks&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2010,&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Build a better file system&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Kaushik Veeraraghavan, et al.] quFiles: The Right File at the Right Time&lt;/li&gt;
+&lt;li&gt;[Peter Macko, et al.] Tracking Back References in a Write-Anywhere File System&lt;/li&gt;
+&lt;li&gt;[Yupu Zhang, et al.]  End-to-end Data Integrity for File Systems: A ZFS Case Study&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Flash: Savior of the Universe?&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[William K. Josephson, et al.] DFS: A File System for Virtualized Flash Storage&lt;/li&gt;
+&lt;li&gt;[Gokul Soundararajan, et al.] Extending SSD Lifetimes with Disk-Based Write Caches&lt;/li&gt;
+&lt;li&gt;[Simona Boboila, et al.] Write Endurance in Flash Drives: Measurements and Analysis&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;I/O, I/O, to parallel I/O we go&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Tiankai Tu, et al.] Accelerating Parallel Analysis of Scientific Simulation Data via Zazen&lt;/li&gt;
+&lt;li&gt;[Sarp Oral, et al.] Efficient Object Storage Journaling in a Distributed Parallel File System&lt;/li&gt;
+&lt;li&gt;[Marc Eshel, et al.] Panache: A Parallel File System Cache for Global File Access&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Making management more managable&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Ajay Gulati, et al.] BASIL: Automated IO Load Balancing Across Storage Devices&lt;/li&gt;
+&lt;li&gt;[Neeraja J. Yadwadkar, et al.] Discovery of Application Workloads from Network File Traces&lt;/li&gt;
+&lt;li&gt;[Kiran-Kumar Muniswamy-Reddy, et al.] Provenance for the Cloud&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Concentration: The Duplication Game&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Ricardo Koller, et al.] I/O Deduplication: Utilizing Content Similarity to Improve I/O Performance&lt;/li&gt;
+&lt;li&gt;[Cristian Ungureanu, et al.] HydraFS: A High-Throughput File System for the HYDRAstor Content-Addressable Storage System&lt;/li&gt;
+&lt;li&gt;[Erik Kruus, et al.] Bimodal Content Defined Chunking for Backup Streams&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2011,&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Deduplication&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Dutch T. Meyer, et al.] A Study of Practical Deduplication&lt;/li&gt;
+&lt;li&gt;[Wei Dong, et al.] Tradeoffs in Scalable Data Routing for Deduplication Clusters&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Flash&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Feng Chen, et al.] CAFTL: A Content-Aware Flash Translation Layer Enhancing the Lifespan of Flash Memory based Solid State Drives&lt;/li&gt;
+&lt;li&gt;[Aayush Gupta, et al.] Leveraging Value Locality in Optimizing NAND Flash-based SSDs&lt;/li&gt;
+&lt;li&gt;[Michael Yung Chung Wei, et al.] Reliably Erasing Data from Flash-Based Solid State Drives&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;The disk ain't dead&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Yuehai Xu, et al.] A Scheduling Framework That Makes Any Disk Schedulers Non-Work-Conserving Solely Based on Request Characteristics&lt;/li&gt;
+&lt;li&gt;[Jiri Schindler, et al.] Improving Throughput for Small Disk Requests with Proximal I/O&lt;/li&gt;
+&lt;li&gt;[Weiming Zheng, et al.] FastScale: Accelerate RAID Scaling by Minimizing Data Migration&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Scaling Well&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Beth Trushkowsky, et al.] The SCADS Director: Scaling a Distributed Storage System Under Stringent Performance Requirements&lt;/li&gt;
+&lt;li&gt;[Swapnil Patil, et al.] Scale and concurrency  of GIGA+: File System Directories with Millions of Files&lt;/li&gt;
+&lt;li&gt;[Jason K. Resch, et al.] AONT-RS: Blending Security and Performance in Dispersed Storage Systems&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Making Things Right&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Nitin Agrawal, et al.] Emulating Goliath Storage Systems with David&lt;/li&gt;
+&lt;li&gt;[H. Howie Huang, et al.] Just-in-Time Analytics on Large File Systems&lt;/li&gt;
+&lt;li&gt;[Swaminathan Sundararaman, et al.] Making the Common Case the Only Case with Anticipatory Memory Allocation&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Flash the Second&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Yangyang Pan, et al.] Exploiting Memory Device Wear-Out Dynamics to Improve NAND Flash Memory System Performance&lt;/li&gt;
+&lt;li&gt;[Yongsoo Joo, et al.] FAST: Quick Application Launch on Solid-State Drives&lt;/li&gt;
+&lt;li&gt;[Jorge Guerra, et al.] Cost Effective Storage using Extent Based Dynamic Tiering&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2012&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Implications of New Storage Technology&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Yiying Zhang, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Zhang.pdf&quot;&gt;De-indirection for Flash-based SSDs with Nameless Writes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Laura M. Grupp, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Grupp.pdf&quot;&gt;The Bleak Future of NAND Flash Memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Jisoo Yang, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Yang.pdf&quot;&gt;When Poll Is Better than Interrupt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;File System Design and Correctness&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Daniel Fryer, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Fryer2-16-12.pdf&quot;&gt;Recon: Verifying File System Consistency at Runtime&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Duy Le, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Le.pdf&quot;&gt;Understanding Performance Implications of Nested File Systems in a Virtualized Environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Vijay Chidambaram, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Chidambaram.pdf&quot;&gt;Consistency Without Ordering&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Flash and SSDs, Part I, Part II&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Guanying Wu, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Wu.pdf&quot;&gt;Reducing SSD Read Latency via NAND Flash Program and Erase Suspension&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Ren-Shuo Liu, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Liu.pdf&quot;&gt;Optimizing NAND Flash-Based SSDs via Retention Relaxation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Changwoo Min, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Min.pdf&quot;&gt;SFS: Random Write Considered Harmful in Solid State Drives&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Yongseok Oh, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Oh.pdf&quot;&gt;Caching Less for Better Performance: Balancing Cache Size and Update Cost of Flash Memory Cache in Hybrid Storage Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Sungjin Lee, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Lee.pdf&quot;&gt;Lifetime Management of Flash-Based SSDs Using Recovery-Aware Dynamic Throttling&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;OS&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Stan Park and Kai Shen] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Park.pdf&quot;&gt;FIOS: A Fair, Efficient Flash I/O Scheduler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Pramod Bhatotia and Rodrigo Rodrigues] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Bhatotia2-5-12.pdf&quot;&gt;Shredder: GPU-Accelerated Incremental Storage and Computation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Muli Ben-Yehuda, et al.] &lt;a href=&quot;https://www.usenix.org/legacy/events/fast12/tech/full_papers/Ben-Yehuda2-2-12.pdf&quot;&gt;Adding Advanced Storage Controller Functionality via Low-Overhead Virtualization&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+
+&lt;p&gt;In 2013&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;File Systems&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Ao Ma, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/ma&quot;&gt;ffsck: The Fast File System Checker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Pradeep Shetty, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/shetty&quot;&gt;Building Workload-Independent Storage with VT-Trees&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Lanyue Lu, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/lu&quot;&gt;A Study of Linux File System Evolution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Caching&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Ricardo Koller, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/koller&quot;&gt;Write Policies for Host-side Flash Caches&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Yiying Zhang, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/zhang&quot;&gt;Warming Up Storage-Level Caches with Bonﬁre&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Eunji Lee and Hyokyung Bahn, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/lee&quot;&gt;Unioning of the Buffer Cache and Journaling Layers with Non-volatile Memory&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Big Systems, Big Challenges&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Devesh Tiwari, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/tiwari&quot;&gt;Active Flash: Towards Energy-Efficient, In-Situ Data Analytics on Extreme-Scale Machines&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Madalin Mihailescu, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/mihailescu&quot;&gt;MixApart: Decoupled Analytics for Shared Storage Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Yan Li, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/li_yan&quot;&gt;Horus: Fine-Grained Encryption-Based Security for Large-Scale Storage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Deduplication&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Przemyslaw Strzelczak, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/strzelczak&quot;&gt;Concurrent Deletion in a Distributed Content-Addressable Storage System with Global Deduplication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Dirk Meister, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/meister&quot;&gt;File Recipe Compression in Data Deduplication Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Mark Lillibridge and Kave Eshghi, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/lillibridge&quot;&gt;Improving Restore Speed for Backup Systems that Use Inline Chunk-Based Deduplication&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Others&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Mohit Saxena, Yiying Zhang, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/saxena&quot;&gt;Getting Real: Lessons in Transitioning Research Simulations into Hardware Systems&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Flash and SSDs&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Kai Zhao, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/zhao&quot;&gt;LDPC-in-SSD: Making Advanced Error Correction Codes Work Effectively in Solid State Drives&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Youyou Lu, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/lu_youyou&quot;&gt;Extending the Lifetime of Flash-based Storage through Reducing Write Amplification from File Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Mai Zheng, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/zheng&quot;&gt;Understanding the Robustness of SSDs under Power Fault&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;em&gt;Performance Improvements and Measurements&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Ji Yong Shin, et al.] &lt;a href=&quot;https://www.usenix.org/conference/fast13/technical-sessions/presentation/shin&quot;&gt;Gecko: Contention-Oblivious Disk Arrays for Cloud Storage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>SC Read List In Last 5 years</title>
